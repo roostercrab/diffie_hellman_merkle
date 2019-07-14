@@ -7,7 +7,7 @@ def dhm_stress():
     bob_secret = random.randint(3, 999999999999)
 
     g = 3
-    #p = 28564294577827
+    # p = 28564294577827
     p = 23
 
     alice_public = (g ^ alice_secret) % p
@@ -18,6 +18,8 @@ def dhm_stress():
 
     if alice_bob_private == bob_alice_private:
         with open("good_numbers.txt", "a+") as file:
+            file.write("g= " + json.dumps(g) + '\n')
+            file.write("p= " + json.dumps(p) + '\n')
             file.write("a= " + json.dumps(alice_secret) + '\n')
             file.write("b= " + json.dumps(bob_secret) + '\n')
             file.write("ab= " + json.dumps(alice_bob_private) + '\n')
@@ -25,6 +27,8 @@ def dhm_stress():
             file.write('\n')
     else:
         with open("bad_numbers.txt", "a+") as file:
+            file.write("g= " + json.dumps(g) + '\n')
+            file.write("p= " + json.dumps(p) + '\n')
             file.write("a= " + json.dumps(alice_secret) + '\n')
             file.write("b= " + json.dumps(bob_secret) + '\n')
             file.write("ab= " + json.dumps(alice_bob_private) + '\n')
